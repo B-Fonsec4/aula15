@@ -1,0 +1,61 @@
+SELECT * FROM tb_generos;
+
+ALTER TABLE tb_generos
+MODIFY COLUMN id_genero INT NOT NULL AUTO_INCREMENT,
+ADD PRIMARY KEY(id_genero);
+
+SELECT * FROM tb_emprestimos;
+
+ALTER TABLE tb_emprestimos
+MODIFY COLUMN id_emprestimo INT NOT NULL AUTO_INCREMENT,
+ADD PRIMARY KEY(id_emprestimo);
+
+SELECT * FROM tb_livros;
+ALTER TABLE tb_livros
+MODIFY COLUMN id_livro INT NOT NULL AUTO_INCREMENT,
+ADD PRIMARY KEY(id_livro);
+
+ALTER TABLE tb_emprestimos
+ADD CONSTRAINT fk_livro
+FOREIGN KEY (id_livro) REFERENCES tb_livros(id_livro);
+
+  ALTER TABLE tb_livros
+ADD CONSTRAINT fk_genero
+FOREIGN KEY (id_genero) REFERENCES td_generos(id_genero);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ALTER TABLE tb_pedidos
+ADD CONSTRAINT fk_pedidos
+FOREIGN KEY (cliente_codigo) REFERENCES tb_clientes(codigo_cliente);
+
+ALTER TABLE tb_itens
+ADD CONSTRAINT fk_itens
+FOREIGN KEY (item_codigo) REFERENCES tb_produtos(codigo_produto);
+
+ALTER TABLE tb_itens
+ADD CONSTRAINT fk_pedido2
+FOREIGN KEY (pedido_codigo) REFERENCES tb_pedidos(codigo_pedido);
+
+SELECT * FROM tb_pedidos WHERE valor > 50.00;
+ 
+ SELECT * FROM tb_pedidos
+ INNER JOIN tb_clientes ON cliente_codigo = codigo_cliente;
+ 
+ SELECT nome,CPF,email,telefone,codigo_pedido
+ FROM tb_pedidos
+ INNER JOIN tb_clientes
+ ON cliente_codigo = codigo_cliente
+ WHERE 	codigo_pedido = 17;
